@@ -2,9 +2,9 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: 'localhost',
-    port: '3300',
+    port: '3306',
     user: 'root',
-    password: 'Ipdcdb2m',
+    password: '',
     database: "userconnect"       
   });
    
@@ -18,3 +18,4 @@ const connection = mysql.createConnection({
       console.log('Database userConnect connected')      
   });
   module.exports = connection
+ 

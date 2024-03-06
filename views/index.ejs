@@ -5,17 +5,20 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <center><h1>ACCUEIL</h1>
+    <center>
+      <h1>ACCUEIL</h1>
 
-   
-      <h1>Merci de vous connecter pour acceder au contenu :</h1>
-      <form method="post" action="/login">
-        <p>
-          <input type="submit" value="Login" />
-        </p>
-      </form>
+      <% if (loggedIn) { %>
+      <h2>Bonjour, <%= email %></h2>
+      <a href="/logout"type="button" value="Se connecter" >Se déconnecter</a>
+      <% } else { %>
+      <h1>Merci de vous connecter pour accéder au contenu :</h1>
+      
+      
+          <a href="/login"type="button" value="Se connecter" >Se connecter</a>
+      
+      <% } %>
 
-    <h1>Vous etes bien connecter <%=  %> </h1>
     </center>
   </body>
 </html>

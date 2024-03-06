@@ -8,15 +8,20 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
+// var logger = require('morgan');
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 var session = require('express-session');
 
+let indexRouter = require('./routes/index');
+let loginRouter = require('./routes/login');
+let logoutRouter = require('./routes/logout');
+// const router = require('./routes/login');
 
 
-// const connection = require('./database')
+
+ const connection = require('./database')
 
 
 
@@ -26,10 +31,10 @@ var session = require('express-session');
 // Ils sont utilisés pour gérer les routes de ton application. Par exemple, 
 // toutes les requêtes à la racine (/) utiliseront indexRouter, et toutes les requêtes à /users utiliseront usersRouter.
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var acceuilRouter = require('./routes/accueil');
-var loginRouter = require('./routes/login');
+
+// var usersRouter = require('./routes/users');
+// var acceuilRouter = require('./routes/accueil');
+
 
 
 // Initialisation de l'application Express
@@ -56,10 +61,10 @@ app.set('view engine', 'ejs');
 // app.use(express.static(path.join(__dirname, 'public'))); 
 // sert les fichiers statiques (comme les images, les fichiers CSS, et les scripts JavaScript) depuis le dossier public.
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
@@ -75,10 +80,10 @@ app.use(session({
 // et toutes celles dans usersRouter répondront aux requêtes à /users.
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/accueil', acceuilRouter);
-app.use('/login', loginRouter);
+// app.use('/users', usersRouter);
 
+app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 
 // Gestion des erreurs
 // app.use(function(req, res, next) { next(createError(404)); }); 
